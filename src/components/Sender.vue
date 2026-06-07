@@ -26,7 +26,8 @@ const localVideo = ref(null)
 
 // const socket = io('http://192.168.45.126:3000')
 // let socket = window.location.hostname.startsWith('192.168.') ? io('http://192.168.45.95:3000') : io('http://hamincam.mooo.com:8443')
-let socket = io('https://hamincam.mooo.com:8443')
+// let socket = io('https://hamincam.mooo.com:8443')
+let socket = io('http://192.168.45.95:3000')
 // ↑ 본인 PC IP로 변경
 
 let peers = {};
