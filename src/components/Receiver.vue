@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>하민 카메라</h2>
+    <h2>하민 카메라11</h2>
 
     <video
       ref="remoteVideo"
@@ -22,11 +22,16 @@ import { io } from 'socket.io-client'
 const remoteVideo = ref(null)
 
 // const socket = io('http://192.168.45.126:3000')
-const socket = io('http://192.168.45.95:3000')
+let socket = io('http://192.168.45.95:3000')
 // 본인 PC IP로 변경
 
 let pc = null
 
+onMounted(() => {
+  if(window.location.hostname.startsWith('192.168.')) {
+    socket = io('https://hamincam.mooo.com:3000')
+  }
+})
 const peerConnection = new RTCPeerConnection({
   iceServers: [
     {
