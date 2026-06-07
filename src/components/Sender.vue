@@ -24,11 +24,19 @@ import { io } from 'socket.io-client'
 
 const localVideo = ref(null)
 
-const socket = io('http://192.168.45.126:3000')
+// const socket = io('http://192.168.45.126:3000')
+const socket = io('http://192.168.45.95:3000')
 // ↑ 본인 PC IP로 변경
 
 let peers = {};
 let localStream = null
+
+onMounted(() => {
+  
+  setTimeout(() => {
+    startCamera();
+  }, 3000);
+})
 
 async function createPeer(viewerId) {
   const pc = new RTCPeerConnection({
@@ -80,6 +88,12 @@ async function startCamera() {
   } catch (err) {
     console.error(err)
   }
+}
+
+function test() {
+  const videoTrack = localStream.getVideoTracks()[0];
+
+  console.log(videoTrack.getSettings());
 }
 
 // 휴대폰이 보낸 Answer 수신

@@ -21,7 +21,8 @@ import { io } from 'socket.io-client'
 
 const remoteVideo = ref(null)
 
-const socket = io('http://192.168.45.126:3000')
+// const socket = io('http://192.168.45.126:3000')
+const socket = io('http://192.168.45.95:3000')
 // 본인 PC IP로 변경
 
 let pc = null
