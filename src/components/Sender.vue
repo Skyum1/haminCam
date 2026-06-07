@@ -65,35 +65,20 @@ async function createPeer(viewerId) {
 
 async function startCamera() {
   try {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const usbCamera = devices.find(
-      device =>
-        device.kind === "videoinput" &&
-        device.label.includes("USB")
-    );
     // 카메라 획득
-    if (usbCamera) {
-      localStream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          deviceId: {
-            exact: usbCamera.deviceId
-          }
-        },
-        audio: true
-      });
+    localStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId: {
+          exact: usbCamera.deviceId
+        }
+      },
+      audio: true
+    });
 
-      localVideo.value.srcObject = localStream;
-    }
-
+    localVideo.value.srcObject = localStream;  
   } catch (err) {
     console.error(err)
   }
-}
-
-function test() {
-  const videoTrack = localStream.getVideoTracks()[0];
-
-  console.log(videoTrack.getSettings());
 }
 
 // 휴대폰이 보낸 Answer 수신
